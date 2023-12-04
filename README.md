@@ -69,4 +69,14 @@ Running with different users
 6. under `my_code` run `docker run -it --user ros -v $PWD/src:/my_source_code my_image` source the file something.py inside the container
 7. create a new file inside `my_source_code` called as `newer_file`
 8. run `ls -l` to see the user information of the files available
-9.
+9. if you run the same code `ls -l` in the PC you will be seeing different user name but the uid will be same
+10. rebuild our image `docker build -t my_image .` then rerun `docker run -it --user ros -v $PWD/src:/my_source_code my_image`
+11. `sudo nano` inside the container. type something and save the file and then `ls -l` confirm the file
+
+Networking
+-----------
+1. Telling the docker to share the network with the host, also add the ipc `docker run -it --user ros --network=host --ipc=host -v $PWD/src:/my_source_code my_image`
+
+Making an entrypoint script
+---------------------------
+1. 
