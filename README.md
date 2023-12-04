@@ -47,4 +47,14 @@ We loose any changes made to the environment everytime we run the container. No 
 6. run the my_image docker container `docker run -it my_image`
 7. run the following command inside the new ccommand window `ls`
 8. edit the site_config using nano `nano site_config/my_config.yaml`
-9. 
+
+Sharing the file from PC to container
+-------------------------------------
+Create a folder named my_code in the desktop. my_code --> src --> something.py.
+
+I am intended to create this src folder as my_source_code/something.py inside container. we can do this in three ways.
+
+1. `docker run -it -v $PWD/src:/my_source_code my_image` check the files using `ls` to confirm that file has been copied. Here PWD is `~/Desktop/my_code`
+2. `cd my_source_code/` and create a new file called `nano new_file.yaml` then now check the main folder created in the PC called my_folder. In this way we can create something in container and store them for furthur use.
+3. exit the container and go to `cd src/`
+4. `ls -la` this exits information about the ownership of the files in the directory. Here, there is a problem that the file created cannt be opened by the user in the PC
