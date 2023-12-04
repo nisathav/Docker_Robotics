@@ -41,3 +41,5 @@ We loose any changes made to the environment everytime we run the container. No 
 
 1. Open a new folder in the desktop of the machine. Inside the folder create a Dockerfile in the vscode.
 2. Download the Docker extension in the vscode
+3. pull the repository from this github
+4. build the docker file 
