@@ -42,4 +42,9 @@ We loose any changes made to the environment everytime we run the container. No 
 1. Open a new folder in the desktop of the machine. Inside the folder create a Dockerfile in the vscode.
 2. Download the Docker extension in the vscode
 3. pull the repository from this github
-4. build the docker file 
+4. build the docker file `docker image build -t my_image .` the dot represents the current path to the Dockerfile created
+5. check the files `docker images`
+6. run the my_image docker container `docker run -it my_image`
+7. run the following command inside the new ccommand window `ls`
+8. edit the site_config using nano `nano site_config/my_config.yaml`
+9. 
