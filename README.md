@@ -57,4 +57,16 @@ I am intended to create this src folder as my_source_code/something.py inside co
 1. `docker run -it -v $PWD/src:/my_source_code my_image` check the files using `ls` to confirm that file has been copied. Here PWD is `~/Desktop/my_code`
 2. `cd my_source_code/` and create a new file called `nano new_file.yaml` then now check the main folder created in the PC called my_folder. In this way we can create something in container and store them for furthur use.
 3. exit the container and go to `cd src/`
-4. `ls -la` this exits information about the ownership of the files in the directory. Here, there is a problem that the file created cannt be opened by the user in the PC
+4. `ls -la` this exits information about the ownership of the files in the directory. Here, there is a problem that the file created cannot be opened by the user in the PC
+
+Running with different users
+---------------------------
+1. change the following in the Dockerfile `ros:humble` to `osrf/ros:humble-desktop-full`
+2. check the user id number for the user where the somthing.py is assigned . use `ls -ln` 
+3. To add a user to group is usermod -aG <group> <user>
+4. update the Dockerfile with `https://github.com/joshnewans/dockerfile_example/blob/main/Dockerfile`
+5. build the docker image `docker build -t my_image .`
+6. under `my_code` run `docker run -it --user ros -v $PWD/src:/my_source_code my_image` source the file something.py inside the container
+7. create a new file inside `my_source_code` called as `newer_file`
+8. run `ls -l` to see the user information of the files available
+9.
