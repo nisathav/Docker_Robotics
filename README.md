@@ -67,12 +67,10 @@ Running with different users
 4. update the Dockerfile with `https://github.com/joshnewans/dockerfile_example/blob/main/Dockerfile`
 5. build the docker image `docker build -t my_image .` for this instance avoid the following in the image file
    
-`# Copy the entrypoint and bashrc scripts so we have 
-# our container's environment set up correctly
-#COPY entrypoint.sh /entrypoint.sh
-#COPY .bashrc /home/${USERNAME}/.bashrc
-
-# Set up entrypoint and default command
+`# Copy the entrypoint and bashrc scripts so we have our container's environment set up correctly
+COPY entrypoint.sh /entrypoint.sh
+COPY .bashrc /home/${USERNAME}/.bashrc
+Set up entrypoint and default command
 #ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 #CMD ["bash"]`
 
@@ -92,11 +90,10 @@ Making an entrypoint script
 ---------------------------
 1. create an entrypoint.sh in the directory `~/Desktop/docker_robotics/my_project`
 2. update the dockerfile with the following,
-`# Copy the entrypoint and bashrc scripts so we have 
-# our container's environment set up correctly
+`# Copy the entrypoint and bashrc scripts so we have our container's environment set up correctly
 COPY entrypoint.sh /entrypoint.sh
 COPY .bashrc /home/${USERNAME}/.bashrc
 
-# Set up entrypoint and default command
+Set up entrypoint and default command
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 CMD ["bash"]`
