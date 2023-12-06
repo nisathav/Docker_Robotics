@@ -71,8 +71,8 @@ Running with different users
 COPY entrypoint.sh /entrypoint.sh
 COPY .bashrc /home/${USERNAME}/.bashrc
 Set up entrypoint and default command
-#ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
-#CMD ["bash"]`
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+CMD ["bash"]`
 
 6. under `my_code` run `docker run -it --user ros -v $PWD/src:/my_source_code my_image` source the file something.py inside the container
 7. create a new file inside `my_source_code` called as `newer_file` use sudo nano and touch to see the user name difference
@@ -89,11 +89,9 @@ Networking
 Making an entrypoint script
 ---------------------------
 1. create an entrypoint.sh in the directory `~/Desktop/docker_robotics/my_project`
-2. update the dockerfile with the following,
-`# Copy the entrypoint and bashrc scripts so we have our container's environment set up correctly
-COPY entrypoint.sh /entrypoint.sh
-COPY .bashrc /home/${USERNAME}/.bashrc
-
-Set up entrypoint and default command
+2. update the dockerfile with the omitted lines above in `running with different users 5.`
+   `Set up entrypoint and default command
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 CMD ["bash"]`
+3. 
+
