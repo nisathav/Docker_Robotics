@@ -98,3 +98,24 @@ Making an entrypoint script
 4. rerun the docker `docker run -it --user ros --network=host --ipc=host -v $PWD/src:/my_source_code my_image ros2 topic list`
    we can add arguments at the end of this docker image running code
 
+GUI Programs
+-------------
+1. `xhost +` `xhost +local` `xhost +local:root` `xhost -local:root` `xhost -` operations related to adding and removing all groups, local group and certain users.
+2. run the following commands to run rviz2 on container but if you have any problem with GUI app or 3D applications use the picture with `3D_dockerApplication` in ROS folder in Google drive. `docker run -it --user ros --network=host --ipc=host -v $PWD/src:/my_source_code -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY my_image
+`
+
+Locale and Timezone
+-------------------
+Installing language and time zone when creating docker image from scratch is must. Thus use the codes in the picture with `LocaleandTimezone` in ROS folder in Google drive.
+
+Argument Completion
+-------------------
+1. When using double tap to figure available options for the argument we are passing, it may end up giving wrong output inside the container. 
+2. Thus create a file inside `~/Desktop/docker_robotics/my_project` named bashrc.
+3. include the following command to dockerfile
+   `COPY .bashrc /home/${USERNAME}/.bashrc`
+4. still any problem exists with autocompletion. add the following files in the dockerfile,
+   `apt-get install -y\
+    bash-completion \
+    python3_argcomplete`
+
