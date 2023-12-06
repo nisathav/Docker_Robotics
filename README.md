@@ -10,7 +10,7 @@
 6. `sudo systemctl enable docker.service` `sudo systemctl enable containerd.service`
    if not use these commands then reboot the computer
    
-INTERACTING WITH DOCKER
+Interacting with docker
 ----------------------
 8. `docker run hello-world`
    it will automatically pull the image is it is not available locally and run it
