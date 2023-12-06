@@ -63,11 +63,21 @@ Running with different users
 ---------------------------
 1. change the following in the Dockerfile `ros:humble` to `osrf/ros:humble-desktop-full`
 2. check the user id number for the user where the somthing.py is assigned . use `ls -ln` 
-3. To add a user to group is usermod -aG <group> <user>
+3. To add a user to group is `usermod -aG <group> <user>`
 4. update the Dockerfile with `https://github.com/joshnewans/dockerfile_example/blob/main/Dockerfile`
-5. build the docker image `docker build -t my_image .`
+5. build the docker image `docker build -t my_image .` for this instance avoid the following in the image file
+   
+`# Copy the entrypoint and bashrc scripts so we have 
+# our container's environment set up correctly
+#COPY entrypoint.sh /entrypoint.sh
+#COPY .bashrc /home/${USERNAME}/.bashrc
+
+# Set up entrypoint and default command
+#ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+#CMD ["bash"]`
+
 6. under `my_code` run `docker run -it --user ros -v $PWD/src:/my_source_code my_image` source the file something.py inside the container
-7. create a new file inside `my_source_code` called as `newer_file`
+7. create a new file inside `my_source_code` called as `newer_file` use sudo nano and touch to see the user name difference
 8. run `ls -l` to see the user information of the files available
 9. if you run the same code `ls -l` in the PC you will be seeing different user name but the uid will be same
 10. rebuild our image `docker build -t my_image .` then rerun `docker run -it --user ros -v $PWD/src:/my_source_code my_image`
@@ -76,7 +86,17 @@ Running with different users
 Networking
 -----------
 1. Telling the docker to share the network with the host, also add the ipc `docker run -it --user ros --network=host --ipc=host -v $PWD/src:/my_source_code my_image`
+2. notice can be made in the user id in the command line 
 
 Making an entrypoint script
 ---------------------------
-1. 
+1. create an entrypoint.sh in the directory `~/Desktop/docker_robotics/my_project`
+2. update the dockerfile with the following,
+`# Copy the entrypoint and bashrc scripts so we have 
+# our container's environment set up correctly
+COPY entrypoint.sh /entrypoint.sh
+COPY .bashrc /home/${USERNAME}/.bashrc
+
+# Set up entrypoint and default command
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+CMD ["bash"]`
