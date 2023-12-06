@@ -47,6 +47,7 @@ We loose any changes made to the environment everytime we run the container. No 
 6. run the my_image docker container `docker run -it my_image`
 7. run the following command inside the new ccommand window `ls`
 8. edit the site_config using nano `nano site_config/my_config.yaml`
+9. closing the container `ctrl + c then ctrl + D`
 
 Sharing the file from PC to container
 -------------------------------------
@@ -89,9 +90,11 @@ Networking
 Making an entrypoint script
 ---------------------------
 1. create an entrypoint.sh in the directory `~/Desktop/docker_robotics/my_project`
-2. update the dockerfile with the omitted lines above in `running with different users 5.`
+2. update the dockerfile with the following lines,
    `Set up entrypoint and default command
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
-CMD ["bash"]`
-3. 
+   COPY entrypoint.sh /entrypoint.sh
+   ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+   CMD ["bash"]`
+4. rerun the docker `docker run -it --user ros --network=host --ipc=host -v $PWD/src:/my_source_code my_image ros2 topic list`
+   we can add arguments at the end of this docker image running code
 
