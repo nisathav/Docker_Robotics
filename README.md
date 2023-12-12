@@ -101,7 +101,7 @@ Making an entrypoint script
 GUI Programs
 -------------
 1. `xhost +` `xhost +local` `xhost +local:root` `xhost -local:root` `xhost -` operations related to adding and removing all groups, local group and certain users.
-2. run the following commands to run rviz2 on container but if you have any problem with GUI app or 3D applications use the picture with `3D_dockerApplication` in ROS folder in Google drive. `docker run -it --user ros --network=host --ipc=host -v $PWD/src:/my_source_code -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY my_image
+2. run the following commands to run rviz2 on container but if you have any problem with GUI app or 3D applications use the picture with `3D_dockerApplication` in ROS folder in Google drive. `docker run -it --user ros --network=host --ipc=host -v $PWD/src:/my_source_code -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY my_image`
 `
 
 Locale and Timezone
@@ -118,4 +118,25 @@ Argument Completion
    `apt-get install -y\
     bash-completion \
     python3_argcomplete`
+
+Device in Docker
+----------------
+Here will be seeing different devices to be conrolled and used in docker which is typically not so simple. they are,
+1. connecting Game pad
+2. Depth Camera
+3. Serial device
+
+- usually privileged mode is typically used to map the device and use them quickly. but on the other hand it affects the performance of docker. Thus, this is not recommended to do so.
+- devices are looked as files in linux systems
+- these files are available in `ls /dev`
+- you can see how the input from the mouse is taken and interpreted. `ls -l /dev/input/mouse3`
+- type in the following code to see the changes in the files in real time `sudo xxd /dev/input/mouse3`
+- single device can have multiple files like this interface. for example `sudo xxd /dev/input/event10`
+- you can see the all the devices connected along with the file associated `ls -l /dev/input/by-id`
+- To get all the key information about the driver of each devices used is by `ls -l /dev/input`
+
+Connecting a USB Game pad:
+1. run the command in the PC terminal `jstest-gtk` which gives information about controller file directory and real time tracking of joysticks movements. take a note of the directory and file name in jstest-gtk console
+2. run the my_image container `docker run -it --user ros --network=host --ipc=host -v $PWD/src:/my_source_code -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY my_image` then run `jstest-gtk` inside the container which `will failed to load the gamepad`
+3. 
 
