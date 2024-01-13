@@ -149,6 +149,19 @@ Docker in Visual Studio
 5. you can notice the change in the bottom left corner button
 6. type the following to ensure the ros distro `echo $ROS_DISTRO`
 7. once container created will open a folder called `.devcontainer` inside will have the following two files `Dockerfile` and `devcontainer.json`
-8. 
-9. 
+8. Docker file have the build/development tools and dependencies.
+9. .json file will have the runtime argument and other parameters related to environment
+10. add another directory in the mount under .json file as follows `source=/home/deck/Desktop,target=/desktop,type=bind` then rebuild the container
+11. To rebuild you can select the button in the bottom left corner
+12. tip 1: you will have two type of container file in the history. one is the local and the other is the container one which will start from where we left in the container work
+13. tip 2: to use the same docker container, install the things in the docker file because when we rebuild the container we will loose the things
+14. tip 3: open the local contianer, you can use the `remote explorer` and then `dev container`
+15. tip 4: we can setup container by selecting `Add Dev Container Configuration Files` in the command palatte and then we can add the dependency in the docker files before rebuilding the container file
+16. tip 5: what if you have the docker file already, navigate to the folder in which the docker file is then select `reopen docker file` and select `from docker file`
+17. tip 6: `ctrl+shift+P` to open the command palatte then type in the needed file in the system
+18. tip 7: you can go to extensions then see the installed packages in the local host and the container. also it will give the recommendations to install in relevant space. go to command palatte `configure recommended extensions` to share the recommended packages to the other user of the program
+
+Running GUI programs:
+1. open the terminal and type `xhost +local:` then rebuild the conatiner and reopen the container in the vscode. Now you should be able to run the gui programs like `rviz2`
+
 
