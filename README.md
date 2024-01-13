@@ -138,5 +138,9 @@ Here will be seeing different devices to be conrolled and used in docker which i
 Connecting a USB Game pad:
 1. run the command in the PC terminal `jstest-gtk` which gives information about controller file directory and real time tracking of joysticks movements. take a note of the directory and file name in jstest-gtk console
 2. run the my_image container `docker run -it --user ros --network=host --ipc=host -v $PWD/src:/my_source_code -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY my_image` then run `jstest-gtk` inside the container which `will failed to load the gamepad`
-3. 
+
+
+Docker in Visual Studio
+-----------------------
+1. 
 
