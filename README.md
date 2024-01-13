@@ -142,5 +142,13 @@ Connecting a USB Game pad:
 
 Docker in Visual Studio
 -----------------------
-1. 
+1. Install `Remote Development and Docker` extension in the visual studio
+2. Open a folder in the local host
+3. check your ubuntu version `lsb_release -a`
+4. go to the command platte or remote connection button in the bottom left corner and select `reopen in container` and search for `ros by ijnek` and  select the distro needed
+5. you can notice the change in the bottom left corner button
+6. type the following to ensure the ros distro `echo $ROS_DISTRO`
+7. once container created will open a folder called `.devcontainer` inside will have the following two files `Dockerfile` and `devcontainer.json`
+8. 
+9. 
 
