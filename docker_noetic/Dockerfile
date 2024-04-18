@@ -5,6 +5,7 @@ RUN apt-get update \
     && apt-get install -y \
     python3-argcomplete \
     python3-rosdep \
+    python3-pandas \
     nano \
     ros-noetic-gazebo-ros \
     ros-noetic-gazebo-ros-pkgs \
@@ -19,15 +20,25 @@ RUN apt-get update \
     vim \
     ros-noetic-rviz \
     ros-noetic-moveit \
+    ros-noetic-cv-bridge \
     curl \
     apt-transport-https \
     ca-certificates \
     gnupg \
+    ros-noetic-rosserial-arduino \
+    ros-noetic-rosserial \
+    ros-noetic-velodyne-gazebo-plugins \
     lsb-release \
     && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables
 #ENV GAZEBO_MASTER_URI http://localhost:11345
+
+# Install Arduino IDE
+RUN apt-get update \
+    && apt-get install -y \
+    arduino \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Visual Studio Code
 RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/microsoft.gpg && \
